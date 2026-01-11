@@ -59,6 +59,9 @@ struct ContentView: View {
     .onAppear {
       viewModel.requestAccessibility()
     }
+    .onReceive(NotificationCenter.default.publisher(for: .appWillTerminate)) { _ in
+      viewModel.cleanup()
+    }
   }
 }
 
@@ -79,7 +82,7 @@ struct ModeIndicator: View {
     case .normal: return Color.blue
     case .insert: return Color.red
     case .visual: return Color.yellow
-    case .command: return Color.purple
+    case .visualLine: return Color.purple
     }
   }
 }

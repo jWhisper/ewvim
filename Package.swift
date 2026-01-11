@@ -17,10 +17,7 @@ let package = Package(
     .executableTarget(
       name: "ewvim",
       dependencies: [],
-      path: "Sources/ewvim",
-      resources: [
-        .process("Resources")
-      ]
+      path: "Sources/ewvim"
     )
   ]
 )
