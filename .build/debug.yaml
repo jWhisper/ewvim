@@ -1,0 +1,81 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "ewvim-arm64-apple-macosx26.0-debug.exe": ["<ewvim-arm64-apple-macosx26.0-debug.exe>"]
+  "ewvim-arm64-apple-macosx26.0-debug.module": ["<ewvim-arm64-apple-macosx26.0-debug.module>"]
+  "main": ["<ewvim-arm64-apple-macosx26.0-debug.exe>","<ewvim-arm64-apple-macosx26.0-debug.module>"]
+  "test": ["<ewvim-arm64-apple-macosx26.0-debug.exe>","<ewvim-arm64-apple-macosx26.0-debug.module>"]
+default: "main"
+nodes:
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim":
+    is-mutated: true
+commands:
+  "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist":
+    tool: write-auxiliary-file
+    inputs: ["<entitlement-plist>","<com.apple.security.get-task-allow>"]
+    outputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist"]
+    description: "Write auxiliary file /Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist"
+
+  "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift"]
+    outputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources"]
+    description: "Write auxiliary file /Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources"
+
+  "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o"]
+    outputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList"
+
+  "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Library/Developer/CommandLineTools/usr/bin/swiftc"]
+    outputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+
+  "<ewvim-arm64-apple-macosx26.0-debug.exe>":
+    tool: phony
+    inputs: ["<ewvim-arm64-apple-macosx26.0-debug.exe-CodeSigning>"]
+    outputs: ["<ewvim-arm64-apple-macosx26.0-debug.exe>"]
+
+  "<ewvim-arm64-apple-macosx26.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules/ewvim.swiftmodule"]
+    outputs: ["<ewvim-arm64-apple-macosx26.0-debug.module>"]
+
+  "C.ewvim-arm64-apple-macosx26.0-debug.exe":
+    tool: shell
+    inputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList"]
+    outputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim"]
+    description: "Linking ./.build/arm64-apple-macosx/debug/ewvim"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-L","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug","-o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim","-module-name","ewvim","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-alias","-Xlinker","_ewvim_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList","-Xlinker","-rpath","-Xlinker","/Library/Developer/CommandLineTools/usr/lib/swift-6.2/macosx","-target","arm64-apple-macosx13.0","-Xlinker","-add_ast_path","-Xlinker","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules/ewvim.swiftmodule","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g"]
+
+  "C.ewvim-arm64-apple-macosx26.0-debug.exe-entitlements":
+    tool: shell
+    inputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist"]
+    outputs: ["<ewvim-arm64-apple-macosx26.0-debug.exe-CodeSigning>"]
+    description: "Applying debug entitlements to ./.build/arm64-apple-macosx/debug/ewvim"
+    args: ["codesign","--force","--sign","-","--entitlements","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim"]
+
+  "C.ewvim-arm64-apple-macosx26.0-debug.module":
+    tool: shell
+    inputs: ["/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift","/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources"]
+    outputs: ["/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules/ewvim.swiftmodule"]
+    description: "Compiling Swift Module 'ewvim' (8 sources)"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-module-name","ewvim","-emit-dependencies","-emit-module","-emit-module-path","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules/ewvim.swiftmodule","-output-file-map","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/output-file-map.json","-incremental","-c","@/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources","-I","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx13.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-index-store-path","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ewvim_main","-swift-version","5","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xcc","-isysroot","-Xcc","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-Xcc","-fPIC","-Xcc","-g","-package-name","ewvim"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/jwen/workSpace/ewvim/Sources/ewvim/","/Users/jwen/workSpace/ewvim/Package.swift","/Users/jwen/workSpace/ewvim/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

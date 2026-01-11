@@ -1,0 +1,372 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ewvim-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "fileList" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources",
+      "importPath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "ewvim",
+      "moduleOutputPath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules/ewvim.swiftmodule",
+      "objects" : [
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "ewvim_main",
+        "-swift-version",
+        "5",
+        "-I",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-L",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-plugin-path",
+        "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "ewvim"
+      ],
+      "outputFileMapPath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules/ewvim.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift",
+        "/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift"
+      ],
+      "tempsPath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ewvim" : [
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "-module-name",
+      "ewvim",
+      "-package-name",
+      "ewvim",
+      "-c",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift",
+      "/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift",
+      "-I",
+      "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ewvim_main",
+      "-swift-version",
+      "5",
+      "-I",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-L",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-plugin-path",
+      "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "ewvim",
+      "-driver-use-frontend-path",
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ewvim" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim-entitlement.plist"
+    },
+    "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/sources"
+    },
+    "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.product/Objects.LinkFileList"
+    },
+    "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+    }
+  }
+}

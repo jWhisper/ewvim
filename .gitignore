@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.swift-build/
+swift/.build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Electron
+out/
+build/
+*.dmg
+*.pkg

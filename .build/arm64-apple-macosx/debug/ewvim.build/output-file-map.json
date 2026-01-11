@@ -1,0 +1,61 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/master.swiftdeps"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/App.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/App.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/Models/VimModels.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimModels.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/AccessibilityService.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/AccessibilityService.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeySimulator.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeySimulator.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/KeyboardMonitor.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/KeyboardMonitor.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/Services/VimCommandProcessor.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimCommandProcessor.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/ViewModels/VimViewModel.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/VimViewModel.dia"
+  },
+  "/Users/jwen/workSpace/ewvim/Sources/ewvim/Views/ContentView.swift": {
+    "dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.d",
+    "object": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swift.o",
+    "swiftmodule": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.swiftdeps",
+    "diagnostics": "/Users/jwen/workSpace/ewvim/.build/arm64-apple-macosx/debug/ewvim.build/ContentView.dia"
+  }
+}
