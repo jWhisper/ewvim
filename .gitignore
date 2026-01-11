@@ -1,5 +1,11 @@
+# Swift build outputs
+.build/
+*.xcodeproj/
+*.xcworkspace/
+
 # Dependencies
 node_modules/
+Package.resolved
 
 # Build outputs
 dist/
@@ -9,25 +15,29 @@ swift/.build/
 # Logs
 *.log
 npm-debug.log*
+swift.log
 
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
 # Environment
 .env
 .env.local
-
-# Temporary files
-*.swp
-*.swo
-*~
 
 # Electron
 out/
 build/
 *.dmg
 *.pkg
+
+# Test
+*.test
