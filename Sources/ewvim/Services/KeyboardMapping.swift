@@ -213,6 +213,12 @@ class KeyboardMapping {
   static let tabKey: CGKeyCode = 0x22
   static let returnKey: CGKeyCode = 0x23
 
+  // Character key codes (for common shortcuts)
+  static let cKey: CGKeyCode = 0x08
+  static let vKey: CGKeyCode = 0x09
+  static let zKey: CGKeyCode = 0x1A
+  static let eKey: CGKeyCode = 0x0D
+
   // Modifier key masks
   static let cmdKey: UInt64 = 0x100000
   static let shiftKey: UInt64 = 0x20000

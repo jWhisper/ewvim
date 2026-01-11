@@ -37,11 +37,19 @@ Sources/ewvim/
 ├── App.swift                  # App entry point (@main)
 ├── Models/VimModels.swift    # Data models/enums
 ├── Views/ContentView.swift    # SwiftUI views
-├── ViewModels/VimViewModel.swift  # State management (@MainActor)
+├── ViewModels/
+│   ├── VimViewModel.swift    # State management (@MainActor), mode coordinator
+│   └── ModeHandlers/        # Strategy pattern for mode handling
+│       ├── ModeHandler.swift          # Protocol for mode handlers
+│       ├── NormalModeHandler.swift    # Normal mode logic
+│       ├── InsertModeHandler.swift    # Insert mode logic
+│       └── VisualModeHandler.swift   # Visual mode logic
 └── Services/                # Business logic
     ├── VimCommandProcessor.swift  # Command parsing
     ├── KeyboardMonitor.swift      # Global keyboard hooks
     ├── KeySimulator.swift        # Key simulation
+    ├── KeySequenceDetector.swift  # Multi-key sequence detection
+    ├── KeyboardMapping.swift      # Keyboard code mappings
     └── AccessibilityService.swift # macOS Accessibility API
 ```
 
@@ -112,6 +120,9 @@ Sources/ewvim/
 - Use `// MARK:` comments to section large files
 - Keep views focused and single-responsibility
 - Extract complex logic into Services layer
+- **Mode Handlers**: Use strategy pattern - each mode in separate class implementing `ModeHandler` protocol
+- **Handler Initialization**: Use `lazy var` for complex objects that need self reference
+- **Cross-Handler Calls**: Use `Task { @MainActor in }` when calling ViewModel methods from handlers
 
 ### Swift Concurrency
 - Use `@MainActor` for ViewModels updating UI
@@ -139,8 +150,12 @@ Sources/ewvim/
 **Command Parsing**: Switch on lowercased string, return enum cases
 **Keyboard Monitoring**: CGEvent tap creation with callback closure
 **Key Simulation**: Create keyDown/keyUp events, post to cghidEventTap
+**Key Bypass**: Use `kCGAnnotatedSessionEventTap` (rawValue: 2) to prevent synthetic event interception
 **State Management**: Update private state, then @Published property
 **Mode Switching**: Clear command buffer when changing modes
+**Async Delays**: Use `DispatchQueue.main.asyncAfter(deadline: .now() + 0.005)` for small delays
+**Key Sequences**: Use `DispatchWorkItem` for timeout handling (e.g., "jk" to exit insert mode)
+**CF Interop**: Use `Unmanaged.passUnretained()` for passing self to C callbacks
 
 ### What NOT to Do
 - Don't add comments unless explaining "why", not "what"
@@ -154,5 +169,8 @@ Sources/ewvim/
 ### Key Code References
 - Arrow keys: 0x7B (left), 0x7C (right), 0x7E (up), 0x7D (down)
 - Escape: 0x35
-- Shift modifier: 1 << 17
+- Shift modifier: 1 << 17 (0x20000)
+- Cmd modifier: 1 << 20 (0x100000)
+- Option modifier: 1 << 19 (0x80000)
+- Ctrl modifier: 1 << 18 (0x10000)
 - Use hex notation for all key codes
