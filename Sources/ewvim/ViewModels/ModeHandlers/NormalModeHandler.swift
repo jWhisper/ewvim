@@ -103,7 +103,9 @@ class NormalModeHandler: ModeHandler {
   }
 
   func onEnter(from oldMode: VimMode) {
-    if oldMode == .visual || oldMode == .visualLine {
+    if oldMode == .insert {
+      KeySimulator.press(keyCode: KeyboardMapping.rightArrow, modifiers: KeyboardMapping.shiftKey)
+    } else if oldMode == .visual || oldMode == .visualLine {
       DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
         KeySimulator.press(keyCode: KeyboardMapping.rightArrow, modifiers: KeyboardMapping.shiftKey)
       }

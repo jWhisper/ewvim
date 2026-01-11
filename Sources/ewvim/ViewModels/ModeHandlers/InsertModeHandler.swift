@@ -6,9 +6,7 @@ class InsertModeHandler: ModeHandler {
     KeySequenceDetector(configs: [
       KeySequenceConfig(
         sequence: "jk",
-        action: { [weak self] in
-          self?.exitToNormal()
-        },
+        action: {},
         timeout: 0.14
       )
     ])
@@ -24,9 +22,9 @@ class InsertModeHandler: ModeHandler {
 
     switch result {
     case .waiting:
-      return nil
+      return .executeAction {}
     case .matched:
-      return nil
+      return .switchMode(.normal)
     case .timeout(let sendKey, _):
       return sendKey ? nil : nil
     case .mismatched:
@@ -45,9 +43,5 @@ class InsertModeHandler: ModeHandler {
 
   func onExit() {
     sequenceDetector.cancel()
-  }
-
-  private func exitToNormal() {
-    KeySimulator.press(keyCode: KeyboardMapping.leftArrow)
   }
 }

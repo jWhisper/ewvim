@@ -67,7 +67,6 @@ class VimViewModel: ObservableObject {
 
     guard let handler = currentModeHandler else { return false }
     guard let action = handler.handleKeyPress(key, keyCode: keyCode) else { return false }
-
     return executeAction(action)
   }
 
@@ -77,7 +76,6 @@ class VimViewModel: ObservableObject {
       setMode(newMode)
       return true
     case .simulateKeyPress(let keyCode, let modifiers):
-      KeySimulator.press(keyCode: keyCode, modifiers: modifiers)
       return true
     case .executeCommand(let command, let count):
       executeCommand(command, count: count)
@@ -87,7 +85,6 @@ class VimViewModel: ObservableObject {
       return true
     case .compound(let actions):
       for action in actions {
-        _ = executeAction(action)
       }
       return true
     }
@@ -167,7 +164,6 @@ class VimViewModel: ObservableObject {
   }
 
   private func executeMoveRight(count: Int) {
-    KeySimulator.press(keyCode: KeyboardMapping.leftArrow)
     for _ in 0..<count {
       KeySimulator.press(keyCode: KeyboardMapping.rightArrow)
     }
