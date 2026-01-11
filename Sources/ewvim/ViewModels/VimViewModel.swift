@@ -76,13 +76,21 @@ class VimViewModel: ObservableObject {
   private func handleKeyPress(_ key: String, keyCode: CGKeyCode) -> Bool {
     print("⌨️ handleKeyPress: key='\(key)', keyCode=\(keyCode), state.mode=\(state.mode.rawValue)")
 
+    // ESC key (keyCode 0x35) always exits to Normal mode from any mode except Insert
+    if keyCode == KeyboardMapping.escKey {
+      if state.mode != .insert && state.mode != .normal {
+        setMode(.normal)
+        return true
+      }
+    }
+
     switch state.mode {
     case .normal:
       return handleNormalMode(key)
     case .insert:
       return handleInsertMode(key, keyCode: keyCode)
     case .visual, .visualLine:
-      return handleVisualMode(key)
+      return handleVisualMode(key, keyCode: keyCode)
     }
   }
 
@@ -287,13 +295,10 @@ class VimViewModel: ObservableObject {
     }
   }
 
-  private func handleVisualMode(_ key: String) -> Bool {
-    print("👁️ VISUAL mode: key='\(key)', state.mode=\(state.mode.rawValue)")
+  private func handleVisualMode(_ key: String, keyCode: CGKeyCode) -> Bool {
+    print("👁️ VISUAL mode: key='\(key)', keyCode=\(keyCode), state.mode=\(state.mode.rawValue)")
 
-    if key == "ESC" {
-      setMode(.normal)
-      return true
-    }
+    // ESC is already handled in handleKeyPress via keyCode check
 
     // In visual mode, use Shift + Arrow for selection
     let shiftModifier: UInt64 = 0x20000  // Shift key modifier
@@ -431,12 +436,9 @@ class VimViewModel: ObservableObject {
 
   /// Move right: cancel selection, move, then reselect at new position
   private func executeMoveRight(count: Int) {
-    // Cancel selection (shift+right selects from left to right, so left returns to original position)
-    // Press Left once to cancel selection (cursor stays at original left side of selection)
+    // Cancel selection (shift+right selects 1 character to the right)
+    // Press Left once to cancel - cursor is now at the original position
     KeySimulator.press(keyCode: 0x7B)
-
-    // Press Right once to move to original right side of selection
-    KeySimulator.press(keyCode: 0x7C)
 
     // Now move right count times
     for _ in 0..<count {
