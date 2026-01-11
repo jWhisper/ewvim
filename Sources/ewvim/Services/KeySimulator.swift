@@ -9,6 +9,9 @@ class KeySimulator {
 
   /// Simulates a key press. Uses kCGAnnotatedSessionEventTap to bypass our keyboard monitor.
   static func press(keyCode: CGKeyCode, modifiers: UInt64 = 0) {
+    let modStr = modifiers != 0 ? " modifiers=0x\(String(modifiers, radix: 16))" : ""
+    print("      ⌨️ KeySimulator pressing keyCode=\(keyCode) (\(KeyboardMapping.keyToString(Int64(keyCode))))\(modStr)")
+
     let source = CGEventSource(stateID: .hidSystemState)
 
     let keyDown = CGEvent(

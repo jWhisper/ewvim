@@ -25,6 +25,13 @@ class AccessibilityService {
       &focused
     )
 
+    print("         📍 AX.getFocusedElement: result=\(result.rawValue), hasValue=\(focused != nil)")
+    if result == .success, let role = focused {
+      var roleValue: AnyObject?
+      _ = AXUIElementCopyAttributeValue(role as! AXUIElement, kAXRoleAttribute as CFString, &roleValue)
+      print("         📍 Role: \(roleValue as? String ?? "unknown")")
+    }
+
     return result == .success ? (focused as! AXUIElement) : nil
   }
 
@@ -35,6 +42,11 @@ class AccessibilityService {
       kAXValueAttribute as CFString,
       &value
     )
+
+    print("         📍 AX.getText: result=\(result.rawValue), hasValue=\(value != nil)")
+    if let text = value as? String {
+      print("         📍 Text length: \(text.count), preview: \"\(text.prefix(50))...\"")
+    }
 
     return result == .success ? (value as? String) : nil
   }
@@ -58,11 +70,27 @@ class AccessibilityService {
       &rangeValue
     )
 
-    guard result == .success else {
+    print("         📍 AX.getSelectedRange: result=\(result.rawValue), hasValue=\(rangeValue != nil)")
+
+    guard result == .success,
+          let rangeAXValue = rangeValue,
+          CFGetTypeID(rangeAXValue) == AXValueGetTypeID() else {
+      print("         ❌ Failed to get range or not AXValue type")
       return nil
     }
 
-    return NSRange(location: 0, length: 0)
+    var range = CFRange(location: 0, length: 0)
+    let success = withUnsafePointer(to: &range) { ptr in
+      AXValueGetValue(rangeAXValue as! AXValue, .cfRange, UnsafeMutableRawPointer(mutating: ptr))
+    }
+
+    guard success else {
+      print("         ❌ AXValueGetValue failed")
+      return nil
+    }
+
+    print("         ✅ Range: location=\(range.location), length=\(range.length)")
+    return NSRange(location: range.location, length: range.length)
   }
 
   func setSelectedRange(_ range: NSRange, in element: AXUIElement) -> Bool {

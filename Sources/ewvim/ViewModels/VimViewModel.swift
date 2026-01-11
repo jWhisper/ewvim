@@ -201,6 +201,60 @@ class VimViewModel: ObservableObject {
   }
 
   private func executeWordForward(count: Int = 1) {
+    print("🎯 executeWordForward: count=\(count)")
+    print("   🔍 Getting text state...")
+    guard let state = getCurrentTextState() else {
+      print("   ❌ Failed to get text state, using fallback")
+      // 降级到原有行为
+      fallbackWordForward(count: count)
+      return
+    }
+    print("   ✅ Got text: [\(state.fullText.prefix(50))...] cursor=\(state.cursorPosition)")
+
+    var currentPos = state.cursorPosition
+    for i in 0..<count {
+      print("   🔍 Iteration \(i + 1)/\(count): currentPos=\(currentPos)")
+      guard let target = WordAnalyzer.findNextWordStart(from: currentPos, in: state.fullText) else {
+        print("   ❌ No more word start found")
+        break
+      }
+      print("   ✅ Found word start at \(target)")
+      currentPos = target
+    }
+
+    print("   🎯 Moving from \(state.cursorPosition) to \(currentPos)")
+    executeMove(from: state.cursorPosition, to: currentPos)
+  }
+
+  private func executeWordEndForward(count: Int = 1) {
+    print("🎯 executeWordEndForward: count=\(count)")
+    print("   🔍 Getting text state...")
+    guard let state = getCurrentTextState() else {
+      print("   ❌ Failed to get text state, using fallback")
+      // 降级到原有行为
+      fallbackWordEndForward(count: count)
+      return
+    }
+    print("   ✅ Got text: [\(state.fullText.prefix(50))...] cursor=\(state.cursorPosition)")
+
+    var currentPos = state.cursorPosition
+    for i in 0..<count {
+      print("   🔍 Iteration \(i + 1)/\(count): currentPos=\(currentPos)")
+      guard let target = WordAnalyzer.findCurrentOrNextWordEnd(from: currentPos, in: state.fullText) else {
+        print("   ❌ No more word end found")
+        break
+      }
+      print("   ✅ Found word end at \(target)")
+      currentPos = target
+    }
+
+    print("   🎯 Moving from \(state.cursorPosition) to \(currentPos)")
+    executeMove(from: state.cursorPosition, to: currentPos)
+  }
+
+  // 降级函数：无法通过 Accessibility API 获取文本时的原有行为
+  private func fallbackWordForward(count: Int) {
+    print("   🔄 fallbackWordForward: count=\(count)")
     KeySimulator.press(keyCode: KeyboardMapping.leftArrow)
     for _ in 0..<count {
       KeySimulator.press(keyCode: KeyboardMapping.eKey, modifiers: KeyboardMapping.optionKey)
@@ -210,7 +264,8 @@ class VimViewModel: ObservableObject {
     }
   }
 
-  private func executeWordEndForward(count: Int = 1) {
+  private func fallbackWordEndForward(count: Int) {
+    print("   🔄 fallbackWordEndForward: count=\(count)")
     KeySimulator.press(keyCode: KeyboardMapping.leftArrow)
     for _ in 0..<count {
       KeySimulator.press(keyCode: KeyboardMapping.eKey, modifiers: KeyboardMapping.optionKey)
@@ -222,6 +277,83 @@ class VimViewModel: ObservableObject {
   }
 
   private func executeWordBackward(count: Int = 1) {
+    print("🎯 executeWordBackward: count=\(count)")
+    print("   🔍 Getting text state...")
+    guard let state = getCurrentTextState() else {
+      print("   ❌ Failed to get text state, using fallback")
+      // 降级到原有行为
+      fallbackWordBackward(count: count)
+      return
+    }
+    print("   ✅ Got text: [\(state.fullText.prefix(50))...] cursor=\(state.cursorPosition)")
+
+    var currentPos = state.cursorPosition
+    for i in 0..<count {
+      print("   🔍 Iteration \(i + 1)/\(count): currentPos=\(currentPos)")
+      guard let target = WordAnalyzer.findPreviousWordStart(from: currentPos, in: state.fullText) else {
+        print("   ❌ No more word start found")
+        break
+      }
+      print("   ✅ Found word start at \(target)")
+      currentPos = target
+    }
+
+    print("   🎯 Moving from \(state.cursorPosition) to \(currentPos)")
+    executeMove(from: state.cursorPosition, to: currentPos)
+  }
+
+  private struct TextState {
+    let fullText: String
+    let cursorPosition: Int
+  }
+
+  private func getCurrentTextState() -> TextState? {
+    print("      🔍 getCurrentTextState: trying to get focused element...")
+    guard let element = AccessibilityService.shared.getFocusedElement() else {
+      print("      ❌ No focused element")
+      return nil
+    }
+    print("      ✅ Got focused element")
+
+    print("      🔍 Getting text from element...")
+    guard let text = AccessibilityService.shared.getText(from: element) else {
+      print("      ❌ Could not get text")
+      return nil
+    }
+    print("      ✅ Got text, length=\(text.count)")
+
+    print("      🔍 Getting selected range...")
+    guard let range = AccessibilityService.shared.getSelectedRange(from: element) else {
+      print("      ❌ Could not get selected range")
+      return nil
+    }
+    print("      ✅ Got range: location=\(range.location), length=\(range.length)")
+
+    print("      📦 Text at cursor: \"\(text.prefix(max(0, range.location - 3)))|\(String(text.dropFirst(range.location).prefix(10)))|\"")
+    return TextState(fullText: text, cursorPosition: range.location)
+  }
+
+  private func executeMove(from: Int, to: Int) {
+    let (arrowCount, direction) = MovementCalculator.calculateArrowKeysToMove(from: from, to: to)
+    print("      🚀 executeMove: from=\(from), to=\(to), count=\(arrowCount), direction=\(direction)")
+
+    switch direction {
+    case .left:
+      for _ in 0..<arrowCount {
+        KeySimulator.press(keyCode: KeyboardMapping.leftArrow)
+      }
+    case .right:
+      for _ in 0..<arrowCount {
+        KeySimulator.press(keyCode: KeyboardMapping.rightArrow)
+      }
+    }
+
+    // 不再需要恢复选择的逻辑
+    // 原来的 Option+箭头移动需要保持选区，但精确箭头移动不需要
+  }
+
+  // 降级函数：无法通过 Accessibility API 获取文本时的原有行为
+  private func fallbackWordBackward(count: Int) {
     KeySimulator.press(keyCode: KeyboardMapping.leftArrow)
     for _ in 0..<count {
       KeySimulator.press(keyCode: KeyboardMapping.leftArrow, modifiers: KeyboardMapping.optionKey)
