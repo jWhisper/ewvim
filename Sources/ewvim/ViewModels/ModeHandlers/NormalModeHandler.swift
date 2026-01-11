@@ -10,56 +10,65 @@ class NormalModeHandler: ModeHandler {
   }
 
   func handleKeyPress(_ key: String, keyCode: CGKeyCode) -> VimAction? {
+    print("📝 NormalModeHandler: key=[\(key)], keyCode=\(keyCode)")
     commandBuffer += key
     let command = commandProcessor.parseCommand(commandBuffer)
     let count = commandProcessor.extractCount(from: commandBuffer) ?? 1
 
-    return processCommand(command, count: count)
+    print("   📦 commandBuffer=[\(commandBuffer)], parsed=\(command), count=\(count)")
+    let action = processCommand(command, count: count)
+    // 清空缓冲区，因为命令已经处理
+    if action != nil {
+      clearBuffer()
+    }
+    return action
   }
 
   private func processCommand(_ command: VimCommand, count: Int) -> VimAction? {
+    print("   🔧 processCommand: \(command), count=\(count)")
+    let action: VimAction?
     switch command {
     case .moveLeft, .moveRight, .moveUp, .moveDown,
          .moveWordForward, .moveWordEndForward, .moveWordBackward,
          .deleteChar, .deleteLine, .deleteToEndOfLine,
          .yankLine, .goToFirstLine, .goToLastLine:
-      return .executeCommand(command, count: count)
+      action = .executeCommand(command, count: count)
     case .enterInsertMode:
-      return .switchMode(.insert)
+      action = .switchMode(.insert)
     case .enterInsertAfterCursor:
-      return .compound([
+      action = .compound([
         .simulateKeyPress(KeyboardMapping.rightArrow, 0),
         .switchMode(.insert)
       ])
     case .enterInsertLineBegin:
-      return .compound([
+      action = .compound([
         .simulateKeyPress(KeyboardMapping.homeKey, 0),
         .switchMode(.insert)
       ])
     case .enterInsertLineEnd:
-      return .compound([
+      action = .compound([
         .simulateKeyPress(KeyboardMapping.endKey, 0),
         .switchMode(.insert)
       ])
     case .enterInsertLineBelow:
-      return .compound([
+      action = .compound([
         .simulateKeyPress(KeyboardMapping.endKey, KeyboardMapping.cmdKey),
         .simulateKeyPress(KeyboardMapping.returnKey, 0),
         .switchMode(.insert)
       ])
     case .enterInsertLineAbove:
-      return .compound([
+      action = .compound([
         .simulateKeyPress(KeyboardMapping.homeKey, KeyboardMapping.cmdKey),
         .simulateKeyPress(KeyboardMapping.returnKey, 0),
         .simulateKeyPress(KeyboardMapping.upArrow, 0),
         .switchMode(.insert)
       ])
     case .enterVisualMode:
-      return .switchMode(.visual)
+      action = .switchMode(.visual)
     case .enterVisualLineMode:
-      return .switchMode(.visualLine)
+      action = .switchMode(.visualLine)
     case .changeChar:
-      return .compound([
+      action = .compound([
         .executeAction {
           for _ in 0..<count {
             KeySimulator.press(keyCode: KeyboardMapping.backspaceKey)
@@ -68,38 +77,40 @@ class NormalModeHandler: ModeHandler {
         .switchMode(.insert)
       ])
     case .changeLine, .changeToEndOfLine:
-      return .compound([
+      action = .compound([
         .executeCommand(command, count: count),
         .switchMode(.insert)
       ])
     case .pasteAfter:
-      return .executeAction {
+      action = .executeAction {
         KeySimulator.press(keyCode: KeyboardMapping.rightArrow)
         KeySimulator.press(keyCode: KeyboardMapping.vKey, modifiers: KeyboardMapping.cmdKey)
       }
     case .pasteBefore:
-      return .executeAction {
+      action = .executeAction {
         KeySimulator.press(keyCode: KeyboardMapping.vKey, modifiers: KeyboardMapping.cmdKey)
       }
     case .undo:
-      return .executeAction {
+      action = .executeAction {
         KeySimulator.press(keyCode: KeyboardMapping.zKey, modifiers: KeyboardMapping.cmdKey)
       }
     case .redo:
-      return .executeAction {
+      action = .executeAction {
         KeySimulator.press(keyCode: KeyboardMapping.zKey, modifiers: KeyboardMapping.cmdKey | KeyboardMapping.shiftKey)
       }
     case .exitToNormalMode:
-      return nil
+      action = nil
     case .unknown:
       if commandBuffer.count >= 2 {
         clearBuffer()
       }
-      return nil
+      action = nil
     default:
       clearBuffer()
-      return nil
+      action = nil
     }
+    print("   ✅ returning action: \(String(describing: action))")
+    return action
   }
 
   func onEnter(from oldMode: VimMode) {

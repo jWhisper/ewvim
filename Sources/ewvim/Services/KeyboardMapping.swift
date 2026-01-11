@@ -2,61 +2,62 @@ import Foundation
 import Carbon
 
 /// Centralized keyboard mappings for ewvim
+/// Based on official Apple Key Codes: https://eastmanreference.com/complete-list-of-applescript-key-codes
 class KeyboardMapping {
   // KeyCode -> Character (monitoring)
   static let keyCodeToString: [CGKeyCode: String] = [
-    // Letters
-    0x00: "a",
-    0x01: "s",
-    0x02: "d",
-    0x03: "f",
-    0x04: "h",
-    0x05: "g",
-    0x06: "z",
-    0x07: "x",
-    0x08: "c",
-    0x09: "v",
-    0x0A: "b",
-    0x0B: "q",
-    0x0C: "w",
-    0x0D: "e",
-    0x0E: "r",
-    0x0F: "y",
-    0x10: "t",
-    0x11: "1",
-    0x1E: "o",
-    0x1F: "u",
-    0x20: "[",
-    0x21: "i",
-    0x22: "p",
-    0x24: "l",
-    0x25: "j",
-    0x27: "k",
-    0x2C: "n",
-    0x2D: "m",
-    // Numbers
-    0x12: "2",
-    0x13: "3",
-    0x14: "4",
-    0x15: "6",
-    0x16: "5",
-    0x17: "=",
-    0x18: "9",
-    0x19: "7",
-    0x1A: "-",
-    0x1B: "8",
-    0x1C: "0",
-    0x1D: "]",
-    // Special keys
-    0x23: "Return",
-    0x26: "'",
-    0x28: ";",
-    0x29: "\\",
-    0x2A: ",",
-    0x2B: "/",
-    0x2E: ".",
-    0x2F: "Tab",
-    0x30: "Space",
+    // Letters (A-Z) - Official Apple Key Codes
+    0x00: "a",  // A = 0
+    0x01: "s",  // S = 1
+    0x02: "d",  // D = 2
+    0x03: "f",  // F = 3
+    0x04: "h",  // H = 4
+    0x05: "g",  // G = 5
+    0x06: "z",  // Z = 6
+    0x07: "x",  // X = 7
+    0x08: "c",  // C = 8
+    0x09: "v",  // V = 9
+    0x0A: "",   // (reserved)
+    0x0B: "b",  // B = 11
+    0x0C: "q",  // Q = 12
+    0x0D: "w",  // W = 13
+    0x0E: "e",  // E = 14
+    0x0F: "r",  // R = 15
+    0x10: "y",  // Y = 16
+    0x11: "t",  // T = 17
+    0x1F: "o",  // O = 31
+    0x20: "u",  // U = 32
+    0x22: "i",  // I = 34
+    0x23: "p",  // P = 35
+    0x25: "l",  // L = 37
+    0x26: "j",  // J = 38
+    0x28: "k",  // K = 40
+    0x2D: "n",  // N = 45
+    0x2E: "m",  // M = 46
+    // Numbers (0-9) - Official Apple Key Codes
+    0x12: "1",  // 1 = 18
+    0x13: "2",  // 2 = 19
+    0x14: "3",  // 3 = 20
+    0x15: "4",  // 4 = 21
+    0x16: "6",  // 6 = 22
+    0x17: "5",  // 5 = 23
+    0x18: "=",  // = = 24
+    0x19: "9",  // 9 = 25
+    0x1A: "7",  // 7 = 26
+    0x1B: "-",  // - = 27
+    0x1C: "8",  // 8 = 28
+    0x1D: "0",  // 0 = 29
+    // Other keys
+    0x1E: "]",
+    0x21: "[",
+    0x24: "Return",
+    0x27: "'",
+    0x29: ";",
+    0x2A: "\\",
+    0x2B: ",",
+    0x2C: "/",
+    0x2F: ".",
+    0x30: "Tab",
     0x31: "`",
     0x32: "Backspace",
     0x33: "Delete",
@@ -140,57 +141,60 @@ class KeyboardMapping {
     0x80: "Up"
   ]
 
-  // Character -> KeyCode (simulation)
+  // Character -> KeyCode (simulation) - Official Apple Key Codes
   static let characterToKeyCode: [Character: CGKeyCode] = [
-    "a": 0x00,
-    "b": 0x0B,
-    "c": 0x08,
-    "d": 0x02,
-    "e": 0x0E,
-    "f": 0x03,
-    "g": 0x05,
-    "h": 0x04,
-    "i": 0x21,
-    "j": 0x25,
-    "k": 0x27,
-    "l": 0x24,
-    "m": 0x2D,
-    "n": 0x2C,
-    "o": 0x1E,
-    "p": 0x22,
-    "q": 0x0C,
-    "r": 0x0F,
-    "s": 0x01,
-    "t": 0x11,
-    "u": 0x1F,
-    "v": 0x09,
-    "w": 0x0D,
-    "x": 0x07,
-    "y": 0x10,
-    "z": 0x06,
-    "0": 0x1D,
-    "1": 0x12,
-    "2": 0x13,
-    "3": 0x14,
-    "4": 0x15,
-    "5": 0x17,
-    "6": 0x16,
-    "7": 0x1A,
-    "8": 0x1C,
-    "9": 0x19,
-    " ": 0x31,
+    // Letters (A-Z)
+    "a": 0x00,  // A = 0
+    "b": 0x0B,  // B = 11
+    "c": 0x08,  // C = 8
+    "d": 0x02,  // D = 2
+    "e": 0x0E,  // E = 14
+    "f": 0x03,  // F = 3
+    "g": 0x05,  // G = 5
+    "h": 0x04,  // H = 4
+    "i": 0x22,  // I = 34
+    "j": 0x26,  // J = 38
+    "k": 0x28,  // K = 40
+    "l": 0x25,  // L = 37
+    "m": 0x2E,  // M = 46
+    "n": 0x2D,  // N = 45
+    "o": 0x1F,  // O = 31
+    "p": 0x23,  // P = 35
+    "q": 0x0C,  // Q = 12
+    "r": 0x0F,  // R = 15
+    "s": 0x01,  // S = 1
+    "t": 0x11,  // T = 17
+    "u": 0x20,  // U = 32
+    "v": 0x09,  // V = 9
+    "w": 0x0D,  // W = 13
+    "x": 0x07,  // X = 7
+    "y": 0x10,  // Y = 16
+    "z": 0x06,  // Z = 6
+    // Numbers (0-9)
+    "0": 0x1D,  // 0 = 29
+    "1": 0x12,  // 1 = 18
+    "2": 0x13,  // 2 = 19
+    "3": 0x14,  // 3 = 20
+    "4": 0x15,  // 4 = 21
+    "5": 0x17,  // 5 = 23
+    "6": 0x16,  // 6 = 22
+    "7": 0x1A,  // 7 = 26
+    "8": 0x1C,  // 8 = 28
+    "9": 0x19,  // 9 = 25
+    // Other characters
+    " ": 0x30,
     "-": 0x1B,
     "=": 0x18,
-    "[": 0x20,
-    "]": 0x1D,
-    "\\": 0x29,
-    ";": 0x28,
-    "'": 0x26,
-    ",": 0x2A,
-    ".": 0x2E,
-    "/": 0x2B,
-    "\n": 0x23,
-    "\t": 0x2F
+    "[": 0x21,
+    "]": 0x1E,
+    "\\": 0x2A,
+    ";": 0x29,
+    "'": 0x27,
+    ",": 0x2B,
+    ".": 0x2F,
+    "/": 0x2C,
+    "\n": 0x24,
+    "\t": 0x30
   ]
 
   // Special key codes
@@ -210,14 +214,14 @@ class KeyboardMapping {
   static let pageDownKey: CGKeyCode = 0x76
   static let forwardDeleteKey: CGKeyCode = 0x75
   static let backspaceKey: CGKeyCode = 0x33
-  static let tabKey: CGKeyCode = 0x22
-  static let returnKey: CGKeyCode = 0x23
+  static let tabKey: CGKeyCode = 0x2F
+  static let returnKey: CGKeyCode = 0x24
 
   // Character key codes (for common shortcuts)
   static let cKey: CGKeyCode = 0x08
   static let vKey: CGKeyCode = 0x09
-  static let zKey: CGKeyCode = 0x1A
-  static let eKey: CGKeyCode = 0x0D
+  static let zKey: CGKeyCode = 0x06
+  static let eKey: CGKeyCode = 0x0E
 
   // Modifier key masks
   static let cmdKey: UInt64 = 0x100000

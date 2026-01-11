@@ -10,6 +10,11 @@ class VisualModeHandler: ModeHandler {
   }
 
   func handleKeyPress(_ key: String, keyCode: CGKeyCode) -> VimAction? {
+    // ESC 切换回正常模式
+    if keyCode == KeyboardMapping.escKey {
+      return .switchMode(.normal)
+    }
+
     let shiftModifier: UInt64 = KeyboardMapping.shiftKey
 
     switch key {

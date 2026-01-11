@@ -56,26 +56,33 @@ class VimViewModel: ObservableObject {
   }
 
   private func handleKeyPress(_ key: String, keyCode: CGKeyCode) -> Bool {
-    print("⌨️ handleKeyPress: key='\(key)', keyCode=\(keyCode), mode=\(mode.rawValue)")
-
-    if keyCode == KeyboardMapping.escKey {
-      if mode != .insert && mode != .normal {
-        setMode(.normal)
-        return true
-      }
-    }
+    print("⌨️ handleKeyPress: key=[\(key)], keyCode=\(keyCode), mode=\(mode.rawValue)")
 
     guard let handler = currentModeHandler else { return false }
+
+    // Normal 模式下所有按键都要拦截，即使没有定义命令
+    if mode == .normal {
+      if let action = handler.handleKeyPress(key, keyCode: keyCode) {
+        return executeAction(action)
+      }
+      print("   🚫 Normal mode: undefined key, intercepted")
+      return true
+    }
+
+    // 其他模式下，只有定义的按键才拦截
     guard let action = handler.handleKeyPress(key, keyCode: keyCode) else { return false }
     return executeAction(action)
   }
 
   private func executeAction(_ action: VimAction) -> Bool {
+    print("🎯 executeAction: [\(action)]")
     switch action {
     case .switchMode(let newMode):
       setMode(newMode)
       return true
     case .simulateKeyPress(let keyCode, let modifiers):
+      print("   ⌨️ Simulating key press: keyCode=\(keyCode), modifiers=\(modifiers)")
+      KeySimulator.press(keyCode: keyCode, modifiers: modifiers)
       return true
     case .executeCommand(let command, let count):
       executeCommand(command, count: count)
@@ -85,6 +92,7 @@ class VimViewModel: ObservableObject {
       return true
     case .compound(let actions):
       for action in actions {
+        _ = executeAction(action)
       }
       return true
     }
