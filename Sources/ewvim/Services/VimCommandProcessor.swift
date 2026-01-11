@@ -22,14 +22,20 @@ class VimCommandProcessor {
     case "Escape":
       return .exitToNormalMode
     default:
-      if command.hasSuffix("h") {
-        return .moveLeft
-      } else if command.hasSuffix("j") {
-        return .moveDown
-      } else if command.hasSuffix("k") {
-        return .moveUp
-      } else if command.hasSuffix("l") {
-        return .moveRight
+      if command.count == 2 && command.first?.isNumber == true {
+        let motionChar = command.last
+        switch motionChar {
+        case "h":
+          return .moveLeft
+        case "j":
+          return .moveDown
+        case "k":
+          return .moveUp
+        case "l":
+          return .moveRight
+        default:
+          return .unknown
+        }
       }
       return .unknown
     }

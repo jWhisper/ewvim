@@ -12,7 +12,7 @@ class KeyboardMonitor {
   }
 
   func start() {
-    let eventMask = (1 << CGEventType.keyDown.rawValue) | (1 << CGEventType.flagsChanged.rawValue)
+    let eventMask = (1 << CGEventType.keyDown.rawValue)
 
     guard let eventTap = CGEvent.tapCreate(
       tap: .cgSessionEventTap,
@@ -27,6 +27,14 @@ class KeyboardMonitor {
         let monitor = Unmanaged<KeyboardMonitor>.fromOpaque(refcon).takeUnretainedValue()
 
         if type == .keyDown {
+          let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
+
+          if monitor.shouldIgnoreKey(keyCode: Int64(keyCode)) {
+            return Unmanaged.passUnretained(event)
+          }
+
+          let keyString = monitor.keyToString(keyCode)
+          print("🔹 Key captured: \(keyString) (keyCode: \(keyCode))")
           monitor.handleKeyEvent(event)
         }
 
@@ -68,6 +76,20 @@ class KeyboardMonitor {
         self.keyHandler(keyString)
       }
     }
+  }
+
+  private func shouldIgnoreKey(keyCode: Int64) -> Bool {
+    if keyCode >= 0x3A && keyCode <= 0x64 {
+      print("🚫 Ignoring function key: \(keyCode) (0x\(String(format: "%02X", keyCode))")
+      return true
+    }
+
+    if keyCode == 0x36 || keyCode == 0x37 || keyCode == 0x38 {
+      print("🚫 Ignoring modifier key: \(keyCode) (0x\(String(format: "%02X", keyCode))")
+      return true
+    }
+
+    return false
   }
 
   private func keyToString(_ keyCode: Int64) -> String {

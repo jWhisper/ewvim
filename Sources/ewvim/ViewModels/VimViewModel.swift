@@ -13,6 +13,7 @@ class VimViewModel: ObservableObject {
   private var keyboardMonitor: KeyboardMonitor?
 
   init() {
+    print("🚀 VimViewModel init, initial mode: \(state.mode.rawValue)")
     commandProcessor = VimCommandProcessor()
     keyboardMonitor = KeyboardMonitor { [weak self] key in
       self?.handleKeyPress(key)
@@ -34,6 +35,8 @@ class VimViewModel: ObservableObject {
   }
 
   private func handleKeyPress(_ key: String) {
+    print("⌨️ handleKeyPress: key='\(key)', state.mode=\(state.mode.rawValue)")
+
     switch state.mode {
     case .normal:
       handleNormalMode(key)
@@ -47,10 +50,13 @@ class VimViewModel: ObservableObject {
   }
 
   private func handleNormalMode(_ key: String) {
+    print("⌨️ Normal mode handling: key='\(key)', state.mode=\(state.mode.rawValue)")
+
     state.commandBuffer += key
     currentCommand = state.commandBuffer
 
     let command = commandProcessor?.parseCommand(state.commandBuffer) ?? .unknown
+    print("⌨️ Command parsed: \(command), buffer: \(state.commandBuffer)")
 
     switch command {
     case .moveLeft:
@@ -66,6 +72,7 @@ class VimViewModel: ObservableObject {
       executeMove(.down)
       clearCommand()
     case .enterInsertMode:
+      print("🔄 Switching to INSERT mode")
       setMode(.insert)
       clearCommand()
     case .enterVisualMode:
@@ -77,16 +84,23 @@ class VimViewModel: ObservableObject {
     case .exitToNormalMode:
       clearCommand()
     case .unknown:
-      break
+      print("⚠️  Unknown command, clearing buffer")
+      clearCommand()
     default:
       clearCommand()
     }
   }
 
   private func handleInsertMode(_ key: String) {
+    print("📝 INSERT mode: key='\(key)', state.mode=\(state.mode.rawValue)")
+
     if key == "Escape" {
+      print("🔄 ESC pressed in INSERT mode → switching to NORMAL")
       setMode(.normal)
+      return
     }
+
+    print("📝 INSERT mode: ignoring non-ESC key: \(key)")
   }
 
   private func handleVisualMode(_ key: String) {
@@ -107,10 +121,12 @@ class VimViewModel: ObservableObject {
   }
 
   private func setMode(_ newMode: VimMode) {
+    print("🔄 MODE CHANGE: \(state.mode.rawValue) → \(newMode.rawValue)")
     state.mode = newMode
     mode = newMode
     state.commandBuffer = ""
     currentCommand = ""
+    print("🔄 Mode set, state.mode is now: \(state.mode.rawValue)")
   }
 
   private func clearCommand() {
@@ -119,16 +135,26 @@ class VimViewModel: ObservableObject {
   }
 
   private func executeMove(_ direction: MoveDirection) {
+    var keyCode: CGKeyCode
+    var directionName: String
+
     switch direction {
     case .left:
-      KeySimulator.press(keyCode: 0x7B)
+      keyCode = 0x7B
+      directionName = "left"
     case .right:
-      KeySimulator.press(keyCode: 0x7C)
+      keyCode = 0x7C
+      directionName = "right"
     case .up:
-      KeySimulator.press(keyCode: 0x7E)
+      keyCode = 0x7E
+      directionName = "up"
     case .down:
-      KeySimulator.press(keyCode: 0x7D)
+      keyCode = 0x7D
+      directionName = "down"
     }
+
+    print("🎯 Simulating \(directionName) arrow (keyCode: 0x\(String(format: "%02X", keyCode))")
+    KeySimulator.press(keyCode: keyCode)
   }
 
   private func executeCommand(_ command: String) {
